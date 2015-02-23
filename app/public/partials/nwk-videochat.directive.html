@@ -1,0 +1,47 @@
+<div class="p+++">
+    <span class="fs-subhead display-block text-center">Your ID : {{id}}</span>
+    <div flex-container="column" flex-align="space-between center">
+        <div flex-item flex-gutter="24">
+            <div flex-container="row">
+                <lx-text-field label="Enter Peer Id">
+                    <input type="text" ng-model="peerId" ng-disabled="isDisabled" ng-keypress="startCall($event)">
+                </lx-text-field>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt++" flex-container="row" flex-gutter="24" ng-show="callInProgress">
+        <div flex-item="4">
+            <div class="p+">
+                <span class="fs-headline display-block text-center">My Video</span>
+                <div>
+                    <video ng-src="{{localVdoURL}}" width="320" muted="true" autoplay></video>
+                </div>
+            </div>
+        </div>
+        <div flex-item="8">
+            <div class="p+"><span class="fs-headline display-block">Peer's Video</span>
+            
+                <video ng-src="{{peerVdoURL}}" id="peerVideo" autoplay></video>
+                 <button ng-click="endCall()" class="btn btn--m btn--orange btn--raised" lx-ripple>End Call</button>
+            </div>
+        </div>
+    </div>
+
+
+    <lx-dialog class="dialog dialog--l" id="statusModal">
+        <div class="dialog__content p++">
+            <span class="fs-subhead display-block text-center">{{statusMsg}}</span>
+        </div>
+    </lx-dialog>
+
+    <lx-dialog class="dialog dialog--l" id="answerCall">
+        <div class="dialog__content p++ text-center">
+            <span class="fs-subhead display-block text-center">Answer or Reject Incoming call</span>
+
+            <button ng-click="answer()" class="btn btn--m btn--green btn--raised" lx-ripple>Answer</button>
+
+            <button ng-click="reject()" class="btn btn--m btn--orange btn--raised" lx-ripple>Reject</button>
+
+        </div>
+    </lx-dialog>
